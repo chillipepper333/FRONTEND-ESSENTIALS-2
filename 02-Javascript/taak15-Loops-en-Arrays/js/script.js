@@ -23,5 +23,11 @@ for (let i = 0; i < spelersScore.length; i++) {
 
 //Schrijf hieronder je code
 
+var totaal = [];
 
-console.log(rondePunten);
+for (let i = 0; i < spelersScore.length; i++){
+    totaal.push(rondePunten[i]);
+}
+
+
+console.log(totaal);
