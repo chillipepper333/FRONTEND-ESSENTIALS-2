@@ -37,8 +37,6 @@ function positiesNaarString(arr){
     return outputString;
 }
 
-
-
 //Geeft een array terug waarbij het codeword herhaald wordt totdat de lengte overeenkomt met het te versleutelen bericht
 //Dus als het bericht STUDENT (7 letters) is en het codeword KLAS dan krijg je KLASKLA (7 letters) terug van deze functie.
 function vermenigvuldigCodeword(strInput, strCodeword){
