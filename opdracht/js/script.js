@@ -27,8 +27,17 @@ function stringNaarPosities(str){
 function positiesNaarString(arr){
     var outputString = "";
     //TODO: opdracht 1
+    for (let k = 0; k < arr.length; k++){
+            let pos = arr[k]; 
+            let letter =  strAlfabet[pos];
+            for ( let l = 0; l < letter.length; l++){
+                outputString = outputString + letter;
+            }   
+    }
     return outputString;
 }
+
+
 
 //Geeft een array terug waarbij het codeword herhaald wordt totdat de lengte overeenkomt met het te versleutelen bericht
 //Dus als het bericht STUDENT (7 letters) is en het codeword KLAS dan krijg je KLASKLA (7 letters) terug van deze functie.
@@ -42,8 +51,13 @@ function vermenigvuldigCodeword(strInput, strCodeword){
     var intMod = inputLength % codewordLength; //het aantal letters dat overblijft die nog moeten worden aangevuld
 
     //TODO: opdracht 2
-
-    // console.log("Codeword full: " + outputString);
+    for (let m = 0; m < intDiv; m++) {
+            outputString = outputString + strCodeword;
+    }
+    for (let n = 0; n < intMod; n++) {
+        outputString = outputString + strCodeword[n];
+    }   
+    console.log("Codeword full: " + outputString);
     return outputString;
 }
 
@@ -59,6 +73,8 @@ function versleutel(){
     arrCodewordPosities = stringNaarPosities(strCodewordFull);
     arrInputPosities = stringNaarPosities(strInput);
 
+    positiesNaarString(arrInputPosities);
+
     outputArray = [];
     for (let i = 0; i < arrInputPosities.length; i++) {
         if(arrInputPosities[i] + arrCodewordPosities[i] > 26){
@@ -67,15 +83,35 @@ function versleutel(){
         else{ 
             outputArray.push(arrInputPosities[i] + arrCodewordPosities[i]);
         }
-        
     }
-
-
-    // console.log("versleuteld bericht: " + positiesNaarString(outputArray));
-    // document.querySelector("#output").value = positiesNaarString(outputArray);
+    console.log("versleuteld bericht: " + positiesNaarString(outputArray));
+    document.querySelector("#output").value = positiesNaarString(outputArray);
     strCodewordFull = [];
 }
 
 function ontsleutel(){
     //TODO: opdracht 3
+    strInput = document.querySelector("#input").value; 
+    strCodeword = document.querySelector("#codeword").value;   
+
+    console.log("input: " + strInput);
+    console.log("codeword: " + strCodeword);
+
+    strCodewordFull = vermenigvuldigCodeword(strInput, strCodeword);
+    arrCodewordPosities = stringNaarPosities(strCodewordFull);
+    arrInputPosities = stringNaarPosities(strInput);
+
+    positiesNaarString(arrInputPosities);
+
+    outputArray = [];
+    for (let i = 0; i < arrInputPosities.length; i++) {
+        if(arrInputPosities[i] - arrCodewordPosities[i] < 0){
+            outputArray.push((arrInputPosities[i] - arrCodewordPosities[i])+26);
+        }
+        else{ 
+            outputArray.push(arrInputPosities[i] - arrCodewordPosities[i]);
+        }
+    }
+    document.querySelector("#output").value = positiesNaarString(outputArray);
+    strCodewordFull = [];
 }
